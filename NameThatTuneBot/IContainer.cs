@@ -4,7 +4,8 @@ using System.Text;
 
 namespace NameThatTuneBot
 {
-    interface IContainer
+    interface IContainer<T>
     {
+        T GetMessage();
     }
 }

@@ -21,6 +21,6 @@ namespace NameThatTuneBot.DatabaseServices.Commands
         }
 
         private long fileId;
-    {
+    
     }
 }
