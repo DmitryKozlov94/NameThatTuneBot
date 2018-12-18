@@ -4,7 +4,11 @@ using System.Text;
 
 namespace NameThatTuneBot
 {
-    interface IContainer
+    public enum UserStates
     {
+        NewUser,
+        FirstLevel,
+        SecondLevel,
+        None
     }
 }

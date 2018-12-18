@@ -8,7 +8,7 @@ namespace NameThatTuneBot.DatabaseServices.Commands
 {
     class UpdateUserStatus : ICommand<ApplicationContext>
     {
-        public UpdateUserStatus(long Id, UserState userState)
+        public UpdateUserStatus(long Id, UserStates userState)
         {
             userStatus = new UserStatus { userId = Id, state = userState };
         }
