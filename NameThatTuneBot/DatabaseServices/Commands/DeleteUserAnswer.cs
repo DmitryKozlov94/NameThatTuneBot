@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace NameThatTuneBot.DatabaseServices.Commands
 {
-    class DeleteUserAnswer : IDatabaseCommand<ApplicationContext>
+    class DeleteUserAnswer : ICommand<ApplicationContext>
     {
         public DeleteUserAnswer(long userId)
         {

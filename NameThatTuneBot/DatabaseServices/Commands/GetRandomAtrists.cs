@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace NameThatTuneBot.DatabaseServices.Commands
 {
-    class GetRandomArtists : IDatabaseCommand<ApplicationContext>
+    class GetRandomArtists : ICommand<ApplicationContext>
     {
         public GetRandomArtists(string notUseArtist, int numArtist)
         {

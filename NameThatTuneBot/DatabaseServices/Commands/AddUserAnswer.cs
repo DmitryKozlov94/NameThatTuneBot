@@ -6,7 +6,7 @@ using NameThatTuneBot.DatabaseServices.Entites;
 
 namespace NameThatTuneBot.DatabaseServices.Commands
 {
-    class AddUserAnswer : IDatabaseCommand<ApplicationContext>
+    class AddUserAnswer : ICommand<ApplicationContext>
     {
         public AddUserAnswer(UserAnswer userAnswer)
         {

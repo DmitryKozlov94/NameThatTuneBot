@@ -6,7 +6,7 @@ using NameThatTuneBot.DatabaseServices.Entites;
 
 namespace NameThatTuneBot.DatabaseServices.Commands
 {
-    class UpdateUserStatus : IDatabaseCommand<ApplicationContext>
+    class UpdateUserStatus : ICommand<ApplicationContext>
     {
         public UpdateUserStatus(long Id, UserState userState)
         {

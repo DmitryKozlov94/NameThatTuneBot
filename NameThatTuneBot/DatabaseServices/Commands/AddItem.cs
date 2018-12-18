@@ -5,9 +5,10 @@ using System.Threading.Tasks;
 using NameThatTuneBot.DatabaseServices.Entites;
 
 
+
 namespace NameThatTuneBot.DatabaseServices.Commands
 {
-    class AddItem : IDatabaseCommand<ApplicationContext> //Переделать
+    class AddItem : ICommand<ApplicationContext> //Переделать
     {
         public AddItem(MusicInfo musicInfo)
         {
