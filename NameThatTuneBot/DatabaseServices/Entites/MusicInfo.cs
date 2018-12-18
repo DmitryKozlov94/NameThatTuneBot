@@ -12,7 +12,7 @@ namespace NameThatTuneBot.DatabaseServices.Entites
 
         public string trackName { get; set; }
 
-        public int fileID { get; set; }
+        public long fileID { get; set; }
 
         public string UriTrack { get; set; }
 

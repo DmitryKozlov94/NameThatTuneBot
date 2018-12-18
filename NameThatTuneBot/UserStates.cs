@@ -7,10 +7,8 @@ namespace NameThatTuneBot
     public enum UserStates
     {
         NewUser,
-        MainPage,
-        FirstPage,
-        SecondPage,
-        InGame,
+        FirstLevel,
+        SecondLevel,
         None
     }
 }
