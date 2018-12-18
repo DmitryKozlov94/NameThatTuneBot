@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NameThatTuneBot.DatabaseService
+namespace NameThatTuneBot.DatabaseServices.Commands
 {
     interface IDatabaseCommand<T>
     {

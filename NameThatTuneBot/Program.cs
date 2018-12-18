@@ -1,7 +1,7 @@
 ﻿using System;
 using Telegram.Bot;
 using System.Linq;
-using NameThatTuneBot.DatabaseService;
+using NameThatTuneBot.DatabaseServices;
 namespace NameThatTuneBot
 {
     class Program
@@ -24,7 +24,7 @@ namespace NameThatTuneBot
                 
                 foreach(var i in db.UserStatuses.ToList())
                 {
-                    Console.WriteLine("Вот=" + i.ID + "||" + i.status);
+                    Console.WriteLine("Вот=" + i.ID + "||" + i.state);
                 }
 
                 Console.WriteLine("Hello World!");
