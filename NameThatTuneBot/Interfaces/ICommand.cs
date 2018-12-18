@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NameThatTuneBot.DatabaseService
+namespace NameThatTuneBot
 {
-    interface IDatabaseCommand<T>
+    interface ICommand<T>
     {
         Task HandleCommand(T contex);
     }
