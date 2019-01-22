@@ -11,19 +11,13 @@ namespace NameThatTuneBot.DatabaseServices.Commands
         {
             this.userId = userId;
         }
-        public Task HandleCommand(ApplicationContext contex)
+        public async Task HandleCommand(ApplicationContext contex)
         {
-            var user = contex.UserStatuses.Find(userId);
-            state = (user == null) ? UserStates.None : user.state;
-            return null;
+            var user = await contex.UserStatuses.FindAsync(userId);
+            this.UserStates = (user == null) ? UserStates.None : user.state;
         }
-        public UserStates GetState()
-        {
-            return state;
-        }
-         
 
-        private UserStates state;
+        public UserStates UserStates{ get; private set; }
         private long userId;
     }
 }

@@ -11,17 +11,29 @@ namespace NameThatTuneBot.DatabaseServices.Commands
         public UpdateUserStatus(long Id, UserStates userState)
         {
             userStatus = new UserStatus { userId = Id, state = userState };
+            IsExseption = false;
         }
         public async Task HandleCommand(ApplicationContext contex)
         {
-            UserStatus user =  contex.UserStatuses.FindAsync(userStatus.userId).Result; //Возможно бессмысленно
-            if (user != null)
+            try
             {
-                user.state = userStatus.state;
-                await contex.SaveChangesAsync();
+                UserStatus user = await contex.UserStatuses.FindAsync(userStatus.userId);
+                //Возможно бессмысленно
+                Console.WriteLine("_____________UpdateUserStatus___" + user.state);
+                if (user != null || user.state != userStatus.state)
+                {
+                    user.state = userStatus.state;
+
+                    await contex.SaveChangesAsync();
+                }
+            }
+            catch
+            {
+                IsExseption = true;
+                Console.WriteLine("!!!!!!!!!!!!!!!!!!!!!!!!!!!!1Duplication");
             }
         }
-
+        public bool IsExseption { get; private set; }
         private UserStatus userStatus;
     }
 }

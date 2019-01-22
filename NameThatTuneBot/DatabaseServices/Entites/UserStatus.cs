@@ -10,6 +10,7 @@ namespace NameThatTuneBot.DatabaseServices.Entites
     public class UserStatus
     {
         public long userId { get; set; }
+        [ConcurrencyCheck]
         public UserStates state { get; set; }
     }
 

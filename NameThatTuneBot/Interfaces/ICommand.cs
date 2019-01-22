@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace NameThatTuneBot
 {
-    interface ICommand<T>
+    public interface ICommand<T>
     {
         Task HandleCommand(T contex);
     }

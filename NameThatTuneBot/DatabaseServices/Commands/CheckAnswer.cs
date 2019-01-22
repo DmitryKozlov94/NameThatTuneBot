@@ -11,25 +11,23 @@ namespace NameThatTuneBot.DatabaseServices.Commands
     {
         public CheckAnswer(long userId, string answer)
         {
-            this.userId = userId;
-            this.answer = answer;
+            this.UserId = userId;
+            this.Answer = answer;
         }
         public Task HandleCommand(ApplicationContext contex)
         {
-            var correctAnswer = contex.UserAnswer.Where(x => x.userId == userId).FirstOrDefault().answer;
-            result = answer == correctAnswer;
-
-            return null;
+            if (contex.UserAnswer.Any(x => x.userId == this.UserId))
+            {
+                var correctAnswer = contex.UserAnswer.Where(x => x.userId == UserId).FirstOrDefault();
+                Result = Answer == correctAnswer.answer;
+                Answer = correctAnswer.answer;
+                Console.WriteLine("_______________________________________________END");
+            }
+            return Task.FromResult<object>(null);
         }
 
-        public bool GetResult()
-        {
-            return result;
-        }
-        private bool result;
-        private string answer;
-        private long userId;
-    
-        
+        public bool Result { get; private set; }
+        public string Answer { get; private set; }
+        private long UserId { get; set; }
     }
 }

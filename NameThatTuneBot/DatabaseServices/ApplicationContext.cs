@@ -12,11 +12,13 @@ namespace NameThatTuneBot.DatabaseServices
         public DbSet<UserStatus> UserStatuses { get; set; }
         public DbSet<UserAnswer> UserAnswer { get; set; }
         public DbSet<MusicInfo> MusicInfos { get; set; }
-        
+
+        public int MusicLength { get; private set; }
 
         public ApplicationContext(DbContextOptions options) : base(options)
         {
             Database.EnsureCreated();
+            MusicLength = MusicInfos.CountAsync().Result;
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

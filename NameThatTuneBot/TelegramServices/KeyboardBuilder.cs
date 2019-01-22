@@ -25,13 +25,13 @@ namespace NameThatTuneBot.TelegramServices
                 {
                         new [] 
                     {
-                        new KeyboardButton("A"),
-                        new KeyboardButton("B"),
+                        new KeyboardButton("1"),
+                        new KeyboardButton("2"),
                     },
                         new [] // last row
                     {
-                        new KeyboardButton("C"),
-                        new KeyboardButton("D"),
+                        new KeyboardButton("3"),
+                        new KeyboardButton("4"),
                     },
                     new []
                     {

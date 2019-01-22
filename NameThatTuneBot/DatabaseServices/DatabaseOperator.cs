@@ -5,13 +5,14 @@ using System.Text;
 using NameThatTuneBot.DatabaseServices.Commands;
 using Microsoft.Extensions.Configuration;
 using System.IO;
+using System.Threading.Tasks;
 
 namespace NameThatTuneBot.DatabaseServices
 {
 
-    class DatabaseOperator
+    public class DatabaseOperator
     {
-        DbContextOptions<ApplicationContext> databaseOptions;  
+        DbContextOptions<ApplicationContext> databaseOptions;
 
         public DatabaseOperator()//Возможно нужно это винести за класс, для более гибкой настройки 
         {
@@ -19,7 +20,7 @@ namespace NameThatTuneBot.DatabaseServices
             // установка пути к текущему каталогу
             builder.SetBasePath(Directory.GetCurrentDirectory());
             // получаем конфигурацию из файла appsettings.json
-            builder.AddJsonFile("appsettings.json");
+            builder.AddJsonFile(@"D:\Files\Learning\__Методы\Final\NameThatTuneBot\NameThatTuneBot\NameThatTuneBot\DatabaseServices\appsettings.json");
             // создаем конфигурацию
             var config = builder.Build();
             // получаем строку подключения
@@ -29,16 +30,17 @@ namespace NameThatTuneBot.DatabaseServices
             databaseOptions = optionsBuilder
                 .UseSqlServer(connectionString)
                 .Options;
-
         }
 
-        public async void HandleAsync(ICommand<ApplicationContext> command)
+        public async Task HandleAsync(ICommand<ApplicationContext> command)
         {
             using (ApplicationContext dataBase = new ApplicationContext(databaseOptions))
             {
                 await command.HandleCommand(dataBase);
             }
         }
+
+
 
     }
 }

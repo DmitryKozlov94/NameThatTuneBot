@@ -3,17 +3,22 @@ using Telegram.Bot;
 
 namespace NameThatTuneBot.TelegramServices
 {
-    internal class TelegramOperator
+    public class TelegramOperator //НА УДАЛЕНИЕ 
     {
-
-        private TelegramBotClient client;
+        string authToken;
+        private TelegramService client;
 
         public TelegramOperator(string authToken)
         {
-            this.client = new TelegramBotClient(authToken);
+            this.authToken = authToken;
+        }
+        
+        public void AddMediator(Mediator mediator)
+        {
+            this.client = new TelegramService(authToken, mediator);
         }
 
-        public async Task HandleAsync(ICommand<TelegramBotClient> command)
+        public async Task HandleAsync(ICommand<ApiBot> command)
         {
            await command.HandleCommand(client);
         }

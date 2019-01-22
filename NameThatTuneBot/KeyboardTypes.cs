@@ -4,7 +4,10 @@ using System.Text;
 
 namespace NameThatTuneBot
 {
-    class Message
+    public enum KeyboardTypes
     {
+        MainKeyboard,
+        KeyboardSelection,
+        None
     }
 }

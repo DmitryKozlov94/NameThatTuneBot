@@ -7,16 +7,27 @@ using Telegram.Bot.Args;
 using System.Linq;
 using NameThatTuneBot.BotServices.CommandPack;
 using NameThatTuneBot.DatabaseServices.Commands;
+using NameThatTuneBot.DatabaseServices.Entites;
+using NameThatTuneBot.BotServices.BotCommand;
 
 namespace NameThatTuneBot
 {
-    class MessageHandler
+    public class MessageHandler
     {
-        private FirstLevelPack firstPack;
+        private Dictionary<UserStates, ICommandPack> commandPack;
         private Mediator mediator;
-        public MessageHandler(FirstLevelPack firstLevelPack)
+        public MessageHandler(Dictionary<UserStates, ICommandPack> commandPack)
         {
-            firstPack = firstLevelPack;
+            this.commandPack = commandPack;
+        }
+        public MessageHandler()
+        {
+            this.commandPack = new Dictionary<UserStates, ICommandPack>();
+        }
+
+        public void AddCommandPack(UserStates userStates, ICommandPack commandPack)
+        {
+            this.commandPack.Add(userStates, commandPack);
         }
 
         public void AddMediator(Mediator mediator)
@@ -24,12 +35,29 @@ namespace NameThatTuneBot
             this.mediator = mediator;
         }
 
-        public async Task HandleMessage(MessageEventArgs message)
+        public async Task HandleMessage(Message.Message message)
         {
-            var userId = message.Message.Chat.Id;
-            var cmd = new GetStatusUser(userId);
-            await mediator.HandleCommand( cmd);
-            cmd.GetState();
-        }   
+            var cmd = new GetStatusUser(message.Id);
+            await mediator.HandleCommand(cmd);
+            Console.WriteLine(message.Id.ToString() + "___" + message.Data + "___" + cmd.UserStates.ToString());
+            if (cmd.UserStates == UserStates.None)
+            {
+                UserStatus userStatus = new UserStatus { state = UserStates.FirstLevel, userId = message.Id };
+                await mediator.HandleCommand(new AddItem(userStatus));
+            }
+            if (cmd.UserStates == UserStates.NewUser|| cmd.UserStates == UserStates.None)
+            {
+                await mediator.HandleCommand(new UpdateUserStatus(message.Id, UserStates.FirstLevel));
+                await mediator.HandleCommand(message);
+            }
+            if (commandPack.ContainsKey(cmd.UserStates))
+            {
+               await commandPack[cmd.UserStates].HandleMessage(message, mediator);
+            }
+            
+        }
+          
+            
+         
     }
 }

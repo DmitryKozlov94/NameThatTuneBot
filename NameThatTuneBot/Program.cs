@@ -1,36 +1,28 @@
 ﻿using System;
-using Telegram.Bot;
 using System.Linq;
 using NameThatTuneBot.DatabaseServices;
+using NameThatTuneBot.TelegramServices;
+using NameThatTuneBot.BotServices.CommandPack;
+using System.Threading.Tasks;
+using System.IO;
+
 namespace NameThatTuneBot
 {
     class Program
     {
         static void Main(string[] args)
         {
-            //using( ApplicationContext db = new ApplicationContext()){
-
-            //    //TelegramBotClient rer = new TelegramBotClient("ede");
-            //    UserStatus user = new UserStatus { userId = 1, status = "1" };
-            //    UserStatus user2 = new UserStatus { userId = 2, status = "3" };
-            //    UserStatus user3 = new UserStatus { userId = 3, status = "4" };
-            //    db.UserStatuses.AddAsync (user);
-            //    //Console.WriteLine("Add1");
-            //    //db.UserStatuses.Add(user2);
-            //    //Console.WriteLine("Add2");
-            //    //db.UserStatuses.Add(user3);
-            //    //Console.WriteLine("Add3");
-            //    //db.SaveChanges();
-                
-            //    foreach(var i in db.UserStatuses.ToList())
-            //    {
-            //        Console.WriteLine("Вот=" + i.ID + "||" + i.state);
-            //    }
-
-            //    Console.WriteLine("Hello World!");
-            //}
+            TelegramOperator telegramOperator = new TelegramOperator("797693271:AAF2UPE8UHv9cZiBBNOm2RZa9-gPZoJmgtM");
+            MessageHandler messageHandler = new MessageHandler();
+            messageHandler.AddCommandPack(UserStates.FirstLevel, new MainPagePack());
+            messageHandler.AddCommandPack(UserStates.SecondLevel, new GamePagePack());
+            DatabaseOperator databaseOperator = new DatabaseOperator();
+            Mediator mediator = new Mediator(databaseOperator, telegramOperator, messageHandler);
+            var i1 = mediator.HandleCommand(new Class1());
             
-            
+            Console.ReadLine();
+       
+            Task.WaitAll();  
         }
     }
 }
