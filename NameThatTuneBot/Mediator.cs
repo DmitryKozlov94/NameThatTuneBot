@@ -8,7 +8,7 @@ using NameThatTuneBot.TelegramServices;
 
 namespace NameThatTuneBot
 {
-    class Mediator
+    public class Mediator
     {
        private DatabaseOperator databaseOperator;
        private TelegramOperator telegramOperator;
