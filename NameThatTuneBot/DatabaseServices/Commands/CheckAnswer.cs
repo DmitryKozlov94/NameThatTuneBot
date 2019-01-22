@@ -21,7 +21,7 @@ namespace NameThatTuneBot.DatabaseServices.Commands
                 var correctAnswer = contex.UserAnswer.Where(x => x.userId == UserId).FirstOrDefault();
                 Result = Answer == correctAnswer.answer;
                 Answer = correctAnswer.answer;
-                Console.WriteLine("_______________________________________________END");
+             
             }
             return Task.FromResult<object>(null);
         }

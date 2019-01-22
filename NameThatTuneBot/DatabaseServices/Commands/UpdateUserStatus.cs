@@ -18,8 +18,6 @@ namespace NameThatTuneBot.DatabaseServices.Commands
             try
             {
                 UserStatus user = await contex.UserStatuses.FindAsync(userStatus.userId);
-                //Возможно бессмысленно
-                Console.WriteLine("_____________UpdateUserStatus___" + user.state);
                 if (user != null || user.state != userStatus.state)
                 {
                     user.state = userStatus.state;
@@ -30,7 +28,7 @@ namespace NameThatTuneBot.DatabaseServices.Commands
             catch
             {
                 IsExseption = true;
-                Console.WriteLine("!!!!!!!!!!!!!!!!!!!!!!!!!!!!1Duplication");
+                Console.WriteLine("Duplication");
             }
         }
         public bool IsExseption { get; private set; }

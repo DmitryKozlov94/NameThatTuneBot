@@ -10,7 +10,7 @@ using System.Text.RegularExpressions;
 
 namespace NameThatTuneBot.BotServices.CommandPack
 {
-    class GamePagePack:ICommandPack
+    public class GamePagePack:ICommandPack
     {
         public GamePagePack()
         {

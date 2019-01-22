@@ -9,7 +9,7 @@ using NameThatTuneBot.DatabaseServices.Commands;
 
 namespace NameThatTuneBot.BotServices.CommandPack
 {
-    class MainPagePack:ICommandPack
+   public  class MainPagePack:ICommandPack
     {
         public MainPagePack()
         {

@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace NameThatTuneBot.BotServices.BotCommand
 {
-    class SendMainPageCommand : ICommand<ApiBot>
+    public class SendMainPageCommand : ICommand<ApiBot>
     {
         public SendMainPageCommand(Message.Message message) //CHANGE!!!
         {

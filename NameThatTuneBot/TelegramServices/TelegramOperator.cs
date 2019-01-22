@@ -3,7 +3,7 @@ using Telegram.Bot;
 
 namespace NameThatTuneBot.TelegramServices
 {
-    public class TelegramOperator //НА УДАЛЕНИЕ 
+    public class TelegramOperator : IBotServices//НА УДАЛЕНИЕ 
     {
         string authToken;
         private TelegramService client;

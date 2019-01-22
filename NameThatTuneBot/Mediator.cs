@@ -13,11 +13,11 @@ namespace NameThatTuneBot
     public class Mediator
     {
        private DatabaseOperator databaseOperator;
-       private TelegramOperator telegramOperator;
+       private IBotServices telegramOperator;
        private MessageHandler messageHandler;
     
 
-        public Mediator(DatabaseOperator databaseOperator, TelegramOperator telegramOperator, MessageHandler messageHandler)
+        public Mediator(DatabaseOperator databaseOperator, IBotServices telegramOperator, MessageHandler messageHandler)
         {
             this.databaseOperator = databaseOperator;
             this.telegramOperator = telegramOperator;

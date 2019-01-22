@@ -11,7 +11,7 @@ using System.IO;
 
 namespace NameThatTuneBot.TelegramServices
 {
-    class TelegramService: ApiBot
+    public class TelegramService: ApiBot
     {
         public TelegramService(string authToken, Mediator mediator)
             :base(mediator)
@@ -43,13 +43,13 @@ namespace NameThatTuneBot.TelegramServices
 
         private async void BotOnCallbackQueryReceived(object sender, CallbackQueryEventArgs e) //Что за бред
         {
-            var message = new Message.Message(this.GetType(), e.CallbackQuery.Data, e.CallbackQuery.Message.Chat.Id);
+            var message = new Message.Message( e.CallbackQuery.Data, e.CallbackQuery.Message.Chat.Id);
             await mediator.HandleCommand(message);
         }
 
         private async void BotOnMessageReceived(object sender, MessageEventArgs e)
         {
-            var message = new Message.Message(this.GetType(), e.Message.Text, e.Message.Chat.Id);
+            var message = new Message.Message( e.Message.Text, e.Message.Chat.Id);
             await mediator.HandleCommand(message);
         }
 

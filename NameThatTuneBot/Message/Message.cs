@@ -10,11 +10,10 @@ namespace NameThatTuneBot.Message
         public string Data { get; set; }
         public long Id { get; private set; }
 
-        public Message(Type receiverClass, string data, long id)
+        public Message(string data, long id)
         {
             this.Data = data;
             this.Id = id;
-            this.ReceiverClass = receiverClass;
         }
     }
 }

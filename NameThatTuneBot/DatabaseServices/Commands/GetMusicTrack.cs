@@ -16,19 +16,11 @@ namespace NameThatTuneBot.DatabaseServices.Commands
             this.numberOfTracks = numberOfTrack;
             MusicInfo = new MusicInfo[numberOfTracks];
         }
-        public async Task HandleCommand(ApplicationContext contex)
+        public Task HandleCommand(ApplicationContext contex)
         {
-            Console.WriteLine("START_1"+contex.MusicInfos.Count());
-            Console.WriteLine(contex.MusicLength);
-            
             Random random = new Random();
-            Console.WriteLine("START_!!!" );
-            //for (int i=0; i<numberOfTracks ; i++)
-            //{
-            //    Console.WriteLine("START_"+i);
-            //    MusicInfo[i] = await contex.MusicInfos.FindAsync(random.Next(1, contex.MusicLength));
-            //}
             this.MusicInfo = contex.MusicInfos.OrderBy(x => random.Next()).Take(numberOfTracks).ToArray();
+            return Task.FromResult<object>(null);
         }
 
         private int numberOfTracks;

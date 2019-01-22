@@ -18,26 +18,23 @@ namespace NameThatTuneBot
             messageHandler.AddCommandPack(UserStates.SecondLevel, new GamePagePack());
             DatabaseOperator databaseOperator = new DatabaseOperator();
             Mediator mediator = new Mediator(databaseOperator, telegramOperator, messageHandler);
-            var i1 = mediator.HandleCommand(new Class1());
-            Console.WriteLine("Add new track");
-            //Console.ReadLine();
+            mediator.HandleCommand(new StartReceiving()).Wait();
             var musicUpdate = new MusicUpdateService(mediator);
-            string track = "";
             // var exePath = AppDomain.CurrentDomain.BaseDirectory;//path to exe file
             var path = @"D:\Files\Learning\__Методы\Final\NameThatTuneBot\NameThatTuneBot\NameThatTuneBot\OggTracks\";
-            Console.WriteLine(path);
+            Console.WriteLine("Add new tracks");
             while (true)
             {
                 Console.Write("Add \n Artist Name:");
                 var artist = Console.ReadLine();
-                Console.Write("Add \n Track Name:");
+                Console.WriteLine("Track Name:");
                 var trackName = Console.ReadLine();
                 if (artist != "" && trackName != "")
                 {
                     musicUpdate.AddNewTracks(artist, path, trackName).Wait();
                 }
             }
-            Task.WaitAll();  
+            //Task.WaitAll();  
         }
     }
 }

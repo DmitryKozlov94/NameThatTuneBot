@@ -4,14 +4,14 @@ using System.Text;
 using System.Threading.Tasks;
 using NameThatTuneBot.TelegramServices;
 
-namespace NameThatTuneBot
+namespace NameThatTuneBot.TelegramServices
 {
-    class Class1 : ICommand<ApiBot>
+    public class StartReceiving : ICommand<ApiBot>
     {
         public Task HandleCommand(ApiBot contex)
         {
             contex.StartReceiving();
-            return null;
+            return Task.FromResult<object>(null);
         }
     }
 }

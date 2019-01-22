@@ -15,8 +15,8 @@ namespace NameThatTuneBot.DatabaseServices.Commands
         }
         public async Task HandleCommand(ApplicationContext contex) //Изменить 
         {
-            try
-            {
+            if (contex.UserAnswer.Any(x => x.userId == this.answer.userId))
+            { 
                 UserAnswer user = contex.UserAnswer.Where(x => x.userId == this.answer.userId).First();
                 Console.WriteLine(user != null);
                 if (user != null)
@@ -24,8 +24,7 @@ namespace NameThatTuneBot.DatabaseServices.Commands
                     user.answer = answer.answer;
                     await contex.SaveChangesAsync();
                 }
-            }
-            catch
+            }else
             {
                 await contex.UserAnswer.AddAsync(answer);
                 await contex.SaveChangesAsync();
