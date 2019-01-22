@@ -43,11 +43,19 @@ namespace NameThatTuneBot.DatabaseServices.Entites
             ConvertToOgg(this.UriTrack, fileLocation, fileName);
         }
 
+        private string NormalizeLine(string line)
+        {
+            string[] massiveLine = line.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+            return String.Join('+', massiveLine);
+        }
+
         private string GetMusicAddress(string artist, string nameTrack = "")
         {
            using( HttpClient client = new HttpClient())
             {
-                var httpResponse = client.GetAsync("https://itunes.apple.com/search?parameterkeyvalue&term=" + artist + "+" + nameTrack + "&media=music&limit=15").Result;
+                var artistName = NormalizeLine(artist);
+                var trackName = NormalizeLine(nameTrack);
+                var httpResponse = client.GetAsync("https://itunes.apple.com/search?parameterkeyvalue&term=" + artistName + "+" + trackName + "&media=music&limit=5").Result;
                 if (httpResponse.IsSuccessStatusCode)
                 {
                     var result = httpResponse.Content.ReadAsStringAsync().Result;
